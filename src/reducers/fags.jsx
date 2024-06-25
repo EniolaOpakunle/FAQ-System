@@ -1,4 +1,5 @@
 const initState = {
+    isLoading: false,
     data: null,
     error: null
 }
@@ -13,9 +14,13 @@ const faqs = (state = initState, action) =>{
             return{
                 ...state, error: action.payload
             };
+        case 'LOADING': 
+            return{
+                ...state, isLoading: true
+            };
         default:
             return{
-                ...state
+                state
             }
     }
 }
