@@ -1,32 +1,23 @@
 import React, { useEffect,useState } from 'react';
 import { generateData, loading} from './actions/index';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { Accordion } from 'react-bootstrap';
 import logo from '../assets/images/icon-star.svg'
 import minus from '../assets/images/icon-minus.svg'
 import plus from '../assets/images/icon-plus.svg'
 
 function FAQ() {
     const dispatch = useDispatch();
-    
     const [activeIndex, setActiveIndex] = useState(null);
-    const {isloading ,data, error} = useSelector(state => state.fagsReducers)
+    // const [data, setdata] = useState([])
     useEffect(() => {
         dispatch(generateData())
-        // console.log(data)
     }, [dispatch]);
-      
+
+    const {isloading ,data, error} = useSelector(state => state.fagsReducers);
+
     const onItemClick = (index) => {
         setActiveIndex(index === activeIndex ? null : index);
     }
-    // if(isloading){
-    //     // const {isloading ,data, error} = useSelector(state => state.fagsReducers)
-    //     return <div>loading...</div>
-    // }    
-    // if (!isloading){
-    //     return <div>{error}</div>
-    // }
   return (
     <div className='faq'>
         <div className='d-flex div1'>
