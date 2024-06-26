@@ -1,6 +1,7 @@
 // import { useDispatch } from 'react-redux'
 import { applyMiddleware } from 'redux'
 import axios from 'axios'
+import { useState } from 'react'
 // const dispatch = useDispatch()
 // const axios = require('axios')
 export const loading = () =>{
@@ -21,14 +22,20 @@ export const displayError = (error) =>{
     }
 }
 export const generateData = () =>{
+    // const [isLoading, setIsLoading] = useState(false)
+
     return async (dispatch) =>{
         dispatch(loading());
         try{
+            // setIsLoading(true)
             const response = await axios.get('https://faq-accordion-backenddddd.onrender.com/api/faqs');
             dispatch(displayFaq(response.data.faqs))
             console.log(response)
         }catch(error){
             dispatch(displayError(error.message))
+            console.error(error)
+        } finally {
+            // setIsLoading(false)
         }
     }
     // console.log('hello world')

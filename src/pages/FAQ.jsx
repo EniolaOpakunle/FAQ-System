@@ -7,13 +7,17 @@ import plus from '../assets/images/icon-plus.svg'
 
 function FAQ() {
     const dispatch = useDispatch();
+    generateData()
     const [activeIndex, setActiveIndex] = useState(null);
     // const [data, setdata] = useState([])
     useEffect(() => {
-        dispatch(generateData())
+        dispatch(generateData())    
     }, [dispatch]);
-
     const {isloading ,data, error} = useSelector(state => state.fagsReducers);
+    console.log(data);
+    console.log(error);
+    console.log(isloading);
+
 
     const onItemClick = (index) => {
         setActiveIndex(index === activeIndex ? null : index);
@@ -24,7 +28,7 @@ function FAQ() {
             <div className='w-50 p-5 accordion'>
                 <p className='title'><img src={logo} alt="" /> <span>FAQs</span></p>
                 <div>
-                {data.map((val, index) => (
+                {data?.map((val, index) => (
                     <div key={index} className="accordion-item">
                     <div className="accordion-title" onClick={() => onItemClick(index)}>
                     {val.question}
